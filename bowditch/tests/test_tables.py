@@ -15,6 +15,13 @@ def test_refraction_table():
     with raises(ValueError):
         tables.refraction_table(10)
 
+def test_simple_refraction_table():
+    assert isclose(tables.simple_refraction_table(61), 0)
+    assert isclose(tables.simple_refraction_table(35), 1)
+    assert isclose(tables.simple_refraction_table(31), 1.7)
+    with raises(ValueError):
+        tables.simple_refraction_table(10)
+
 def test_dip_table():
     assert isclose(tables.dip_table(20), 4.3)
     assert isclose(tables.dip_table(74), 8.1)

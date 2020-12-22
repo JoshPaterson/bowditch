@@ -23,6 +23,16 @@ def refraction_table(alt, interpolate=False):
     else:
         return round(interp(alt, refraction_data[0], refraction_data[1], right=0), 1)
 
+def simple_refraction_table(alt):
+    if alt < 14:
+        raise ValueError('Altitude is too low for this table')
+    if alt > 60:
+        return 0
+    elif alt >= 33:
+        return 1
+    else:
+        return refraction_data[1, find_nearest(refraction_data[0], alt)]
+
 
 dip_data = array([[1, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 160, 180, 200, 220, 240],
                   [1, 2.2, 3.1, 3.8, 4.3, 4.9, 5.3, 6.1, 6.9, 7.5, 8.1, 8.7, 9.7, 10.6, 11.5, 12.3, 13.0, 13.7, 14.4, 15.0]])
