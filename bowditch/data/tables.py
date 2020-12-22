@@ -15,13 +15,22 @@ def find_nearest(array,value):
 refraction_data = array([[14, 15, 17, 19, 21, 24, 27, 30, 35, 40, 45, 50, 55, 60, 65, 75, 80, 85, 90],
                          [3.8, 3.4, 3.1, 2.8, 2.5, 2.2, 1.9, 1.7, 1.4, 1.2, 1.0, .8, .7, .6, .5, .4, .3, .2, .1]])
 
-dip_data = array([[1, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 160, 180, 200, 220, 240],
-                  [1, 2.2, 3.1, 3.8, 4.3, 4.9, 5.3, 6.1, 6.9, 7.5, 8.1, 8.7, 9.7, 10.6, 11.5, 12.3, 13.0, 13.7, 14.4, 15.0]])
-
 def refraction_table(alt, interpolate=False):
     if alt < 14:
         raise ValueError('Altitude is too low for this table')
     if not interpolate:
         return refraction_data[1, find_nearest(refraction_data[0], alt)]
     else:
-        return interp(alt, refraction_data[0], refraction_data[1], right=0)
+        return round(interp(alt, refraction_data[0], refraction_data[1], right=0), 1)
+
+
+dip_data = array([[1, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 160, 180, 200, 220, 240],
+                  [1, 2.2, 3.1, 3.8, 4.3, 4.9, 5.3, 6.1, 6.9, 7.5, 8.1, 8.7, 9.7, 10.6, 11.5, 12.3, 13.0, 13.7, 14.4, 15.0]])
+
+def dip_table(height_ft, interpolate=False):
+    if height_ft > 240:
+        raise ValueError('Height too high for this table')
+    if not interpolate:
+        return dip_data[1, find_nearest(dip_data[0], height_ft)]
+    else:
+        return round(interp(height_ft, dip_data[0], dip_data[1], left=0), 1)
