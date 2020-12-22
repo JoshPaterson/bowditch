@@ -21,6 +21,11 @@ setup(
     author='Josh Paterson',
     author_email='mail@joshpaterson.com',
     url='http://github.com/JoshPaterson/bowditch/',
+    packages=[
+        'bowditch',
+        'bowditch.data',
+        'bowditch.tests',
+        ],
     install_requires=[
         'numpy',
         ],
