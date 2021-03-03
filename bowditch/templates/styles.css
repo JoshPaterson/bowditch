@@ -1,0 +1,39 @@
+* {
+    font-family: Times;
+    font-size: 16pt;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+div.table {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr.gap-below td{
+    padding-bottom: 2px;
+}
+
+tr.gap-above td{
+    padding-top: 10px;
+}
+
+td.underline {
+    border-bottom: 2px solid black;
+}
+
+tr td:first-child {
+    text-align-last: justify;
+    padding-right: 5px;
+}
+
+tr td:nth-child(2), tr td:nth-child(4) {
+    text-align: right;
+}
